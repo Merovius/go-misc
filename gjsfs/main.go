@@ -1,5 +1,5 @@
 // Package gjsfs implements an http.FileSystem for gopherjs compiled files
-package gjsfs
+package gjsfs // import "merovius.de/go-misc/gjsfs"
 
 import (
 	"bytes"
