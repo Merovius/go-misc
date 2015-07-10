@@ -4,12 +4,15 @@ package gjsfs // import "merovius.de/go-misc/gjsfs"
 import (
 	"bytes"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path"
 
 	"github.com/shurcooL/gopherjslib"
 )
+
+var Log = log.New(os.Stderr, "[gjsfs]", log.LstdFlags)
 
 // New returns a http.FileSystem that wraps fs. All .js files opened are
 // rewritten to .go names and - if existent in fs - compiled when read. All
@@ -29,9 +32,13 @@ func (f *file) compile() error {
 		return nil
 	}
 
+	Log.Println("Compiling…")
+	defer Log.Println("Compilation finished")
+
 	buf := new(bytes.Buffer)
 	err := gopherjslib.Build(f.f, buf, &gopherjslib.Options{Minify: true})
 	if err != nil {
+		Log.Printf("Compilation failed: %v", err)
 		return err
 	}
 	f.r = bytes.NewReader(buf.Bytes())
@@ -102,22 +109,27 @@ type fileSystem struct {
 }
 
 func (fs fileSystem) Open(name string) (http.File, error) {
+	Log.Printf("Open(%q)", name)
 	if path.Ext(name) != ".js" {
+		Log.Println("Not a javascript file, passing through")
 		return fs.fs.Open(name)
 	}
 	name = name[:len(name)-2] + "go"
 
 	f, err := fs.fs.Open(name)
 	if err != nil {
+		Log.Println("Could not open: %v", err)
 		return nil, err
 	}
 
 	fi, err := f.Stat()
 	if err != nil {
+		Log.Println("Could not stat: %v", err)
 		return f, nil
 	}
 
 	if fi.IsDir() {
+		Log.Println("Is directory, skipping")
 		return f, nil
 	}
 
