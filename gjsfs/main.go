@@ -19,17 +19,23 @@ func New(fs http.FileSystem) http.FileSystem {
 }
 
 type file struct {
-	r io.ReadSeeker
-	f http.File
+	r    io.ReadSeeker
+	size int64
+	f    http.File
 }
 
 func (f *file) compile() error {
+	if f.r != nil {
+		return nil
+	}
+
 	buf := new(bytes.Buffer)
 	err := gopherjslib.Build(f.f, buf, &gopherjslib.Options{Minify: true})
 	if err != nil {
 		return err
 	}
 	f.r = bytes.NewReader(buf.Bytes())
+	f.size = int64(len(buf.Bytes()))
 	return nil
 }
 
@@ -55,18 +61,25 @@ func (f *file) Readdir(count int) ([]os.FileInfo, error) {
 
 func (f *file) Seek(offset int64, whence int) (int64, error) {
 	if f.r == nil {
-		f.compile()
+		if err := f.compile(); err != nil {
+			return 0, err
+		}
 	}
 	return f.r.Seek(offset, whence)
 }
 
-type rewriteExtension struct {
+type rewriteInfo struct {
 	os.FileInfo
+	size func() int64
 }
 
-func (i rewriteExtension) Name() string {
+func (i rewriteInfo) Name() string {
 	n := i.FileInfo.Name()
 	return n[:len(n)-2] + "js"
+}
+
+func (i rewriteInfo) Size() int64 {
+	return i.size()
 }
 
 func (f *file) Stat() (os.FileInfo, error) {
@@ -74,7 +87,14 @@ func (f *file) Stat() (os.FileInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	return rewriteExtension{i}, nil
+	return rewriteInfo{
+		FileInfo: i,
+		size: func() int64 {
+			// TODO
+			_ = f.compile()
+			return f.size
+		},
+	}, nil
 }
 
 type fileSystem struct {
