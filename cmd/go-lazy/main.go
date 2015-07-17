@@ -10,6 +10,8 @@ merovius.de/go-misc/lazy for details on the usage of this function.
 The generated implementations are concurrency-safe and have a reasonably low
 overhead.
 
+The CLI is still not entirely finalized, it may be subject to change for now.
+
 Usage:
 	go-lazy [flags] [<name> <type> ...]
 You must pass an even number of arguments. For each wrapped type you need to
