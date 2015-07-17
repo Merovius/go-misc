@@ -14,8 +14,8 @@ import (
 	"unsafe"
 )
 
-// Native is a host-native binary.ByteOrder.
-var Native native
+// ByteOrder is a host-native binary.ByteOrder.
+var ByteOrder native
 
 type native struct{}
 
