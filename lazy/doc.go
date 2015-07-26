@@ -4,6 +4,6 @@
 // merovius.de/go-misc/cmd/go-lazy.
 //
 // The API is still not finalized, I reserve the right to change things for now.
-package lazy
+package lazy // import "merovius.de/go-misc/lazy"
 
 //go:generate go-lazy -out lazy.go
