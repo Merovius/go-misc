@@ -61,7 +61,7 @@ type lazy{{ .Name }} struct {
 }
 
 func (v *lazy{{ .Name }}) Get() {{ .Type }} {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 

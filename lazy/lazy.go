@@ -16,7 +16,7 @@ type lazyBool struct {
 }
 
 func (v *lazyBool) Get() bool {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -46,7 +46,7 @@ type lazyByte struct {
 }
 
 func (v *lazyByte) Get() byte {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -76,7 +76,7 @@ type lazyComplex64 struct {
 }
 
 func (v *lazyComplex64) Get() complex64 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -106,7 +106,7 @@ type lazyComplex128 struct {
 }
 
 func (v *lazyComplex128) Get() complex128 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -136,7 +136,7 @@ type lazyFloat32 struct {
 }
 
 func (v *lazyFloat32) Get() float32 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -166,7 +166,7 @@ type lazyFloat64 struct {
 }
 
 func (v *lazyFloat64) Get() float64 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -196,7 +196,7 @@ type lazyError struct {
 }
 
 func (v *lazyError) Get() error {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -226,7 +226,7 @@ type lazyInt struct {
 }
 
 func (v *lazyInt) Get() int {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -256,7 +256,7 @@ type lazyInt8 struct {
 }
 
 func (v *lazyInt8) Get() int8 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -286,7 +286,7 @@ type lazyInt16 struct {
 }
 
 func (v *lazyInt16) Get() int16 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -316,7 +316,7 @@ type lazyInt32 struct {
 }
 
 func (v *lazyInt32) Get() int32 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -346,7 +346,7 @@ type lazyInt64 struct {
 }
 
 func (v *lazyInt64) Get() int64 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -376,7 +376,7 @@ type lazyInterface struct {
 }
 
 func (v *lazyInterface) Get() interface{} {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -406,7 +406,7 @@ type lazyRune struct {
 }
 
 func (v *lazyRune) Get() rune {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -436,7 +436,7 @@ type lazyString struct {
 }
 
 func (v *lazyString) Get() string {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -466,7 +466,7 @@ type lazyUint struct {
 }
 
 func (v *lazyUint) Get() uint {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -496,7 +496,7 @@ type lazyUint8 struct {
 }
 
 func (v *lazyUint8) Get() uint8 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -526,7 +526,7 @@ type lazyUint16 struct {
 }
 
 func (v *lazyUint16) Get() uint16 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -556,7 +556,7 @@ type lazyUint32 struct {
 }
 
 func (v *lazyUint32) Get() uint32 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -586,7 +586,7 @@ type lazyUint64 struct {
 }
 
 func (v *lazyUint64) Get() uint64 {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
@@ -616,7 +616,7 @@ type lazyUintptr struct {
 }
 
 func (v *lazyUintptr) Get() uintptr {
-	if atomic.LoadUint32(&v.o) == 0 {
+	if atomic.LoadUint32(&v.o) == 1 {
 		return v.v
 	}
 
