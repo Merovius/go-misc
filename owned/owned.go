@@ -3,7 +3,7 @@
 // The package creates a container (in the form of a closures) that gives you
 // exactly one operation: You can pass it a filter (via a channel), that it
 // will apply atomically to the held value, i.e. your function executes with an
-// exclusive lock on that value. This is a surprisingly powerfull concept. See
+// exclusive lock on that value. This is a surprisingly powerful concept. See
 // the examples (and the code of this package) of how to use this for common
 // operations.
 //
@@ -15,7 +15,7 @@
 // The code heavily uses channels and closures and is thus a bit
 // allocation-heavy and probably significantly slower than relying on a mutex.
 // It is mainly meant as an example of how communication can elegantly express
-// shared-memory patters.
+// shared-memory patterns.
 package owned
 
 // Value represents a value owned by a separate goroutine.
