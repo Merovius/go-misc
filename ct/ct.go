@@ -1,5 +1,5 @@
 // Package ct provides a wrapper around time.Ticker that closes the channel on Stop.
-package ct // import "merovius.de/go-misc/ct"
+package ct
 
 import "time"
 

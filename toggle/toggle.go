@@ -4,7 +4,7 @@
 // there was a send to w since the last read. A send to w will never block.
 // When w is closed, r is closed and all associated resources are released,
 // but only after a potential value written to w was read.
-package toggle // import "merovius.de/go-misc/toggle"
+package toggle
 
 func create(last bool) (chan interface{}, chan interface{}) {
 	r, w := make(chan interface{}), make(chan interface{})

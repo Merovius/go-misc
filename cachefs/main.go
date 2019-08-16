@@ -1,5 +1,5 @@
 // Package cachefs provides an in-memory cache for http.FileSystems
-package cachefs // import "merovius.de/go-misc/cachefs"
+package cachefs
 
 import (
 	"bytes"

@@ -1,4 +1,4 @@
-package lcd2usb // import "merovius.de/go-misc/lcd2usb"
+package lcd2usb
 
 import (
 	"errors"
